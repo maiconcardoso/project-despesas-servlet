@@ -18,4 +18,13 @@
   	<servlet-name>PrimeiraServlet</servlet-name>
   	<url-pattern>/primeiraServlet</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>AdicionaDespesasServlet</servlet-name>
+  	<servlet-class>com.despesas.servlets.AdicionaDespesasServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AdicionarDespesasServlet</servlet-name>
+  	<url-pattern>/adiciona-despesas</url-pattern>
+  </servlet-mapping>
 </web-app>
