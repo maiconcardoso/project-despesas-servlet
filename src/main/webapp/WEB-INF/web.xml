@@ -24,7 +24,7 @@
   	<servlet-class>com.despesas.servlets.AdicionaDespesasServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>AdicionarDespesasServlet</servlet-name>
-  	<url-pattern>/adiciona-despesas</url-pattern>
+  	<servlet-name>AdicionaDespesasServlet</servlet-name>
+  	<url-pattern>/adicionaDespesa</url-pattern>
   </servlet-mapping>
 </web-app>
