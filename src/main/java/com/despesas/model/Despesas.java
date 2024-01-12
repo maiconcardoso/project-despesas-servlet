@@ -13,10 +13,8 @@ public class Despesas extends NotSerializableException{
 	private String categoria;
 	
 	public Despesas() {
-		super();
 	}
 	public Despesas(int id, String descricao, LocalDate data, double valor, String categoria) {
-		super();
 		this.id = id;
 		this.descricao = descricao;
 		this.data = data;
