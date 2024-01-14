@@ -8,12 +8,13 @@ import java.sql.DriverManager;
 public class ConnectionFactory {
 
 	private String driver = "com.mysql.cj.jdbc.Driver";
-	private String url = "jdbc:mysql://localhost:3306/despesas?useTimezone=true&serverTimezone=UTC";
+	private String url = "jdbc:mysql://localhost:3306/despesas?useTimeZone=true&serverTimeZone=UTC";
 	private String username = "root";
 	private String password = "root";
 	
-	public Connection connect() throws ClassNotFoundException {
+	public Connection connect() throws ClassNotFoundException, SQLException {
 		Connection connect = null;
+		
 		try {
 			Class.forName(driver);
 			connect = DriverManager.getConnection(url, username, password);
