@@ -31,7 +31,7 @@
 		List<Despesas> listaDespesas = despesasDao.readAll();
 	%>
 
-
+	<h2 style="padding-bottom: 10px; padding-top: 10px">Lista de Despesas</h2>
 	<table class="table table-striped">
 		<thead>
 			<tr>
