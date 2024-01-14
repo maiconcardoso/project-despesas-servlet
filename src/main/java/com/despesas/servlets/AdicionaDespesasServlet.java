@@ -4,14 +4,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.despesas.dao.DespesasDao;
 import com.despesas.model.Despesas;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class AdicionaDespesasServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	
 
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -23,13 +27,16 @@ public class AdicionaDespesasServlet extends HttpServlet {
 		LocalDate data = LocalDate.parse(dataStr, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 		Double valor = Double.valueOf(valorStr);
 		
-		Despesas despesas = new Despesas(0, descricaoStr, data, valor, categoriaStr);
+		Despesas despesas = new Despesas(descricaoStr, data, valor, categoriaStr);
 		
-		// Modulo de persistencia
-		
-		// Exibir o conteúdo
-		
+		//   Modulo de persistencia 
+		DespesasDao dao = new DespesasDao(); 
+			try {
+				dao.create(despesas); 
+			} catch (SQLException e) 
+				{ e.printStackTrace(); 
+			} catch (ClassNotFoundException e) 
+				{ e.printStackTrace(); 
+			}
 		response.sendRedirect("index.html");
-		
-	}
-}
+	}}

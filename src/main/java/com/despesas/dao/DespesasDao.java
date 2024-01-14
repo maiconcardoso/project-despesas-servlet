@@ -10,23 +10,29 @@ import com.despesas.model.Despesas;
 
 public class DespesasDao {
 
-	private ConnectionFactory connectionFactory;
 	private Connection connection = null;
 
-	public void create() throws ClassNotFoundException, SQLException {
+	public boolean create(Despesas despesas) throws ClassNotFoundException, SQLException {
 		String createSQL = "INSERT INTO tb_despesas (descricao, data_, valor, categoria) " + "values (?, ?, ?, ?)";
-		Despesas despesas = new Despesas();
+		
 		try {
-			connection = connectionFactory.connect();
+			connection = new ConnectionFactory().connect();
 			PreparedStatement pstm = connection.prepareStatement(createSQL);
 			pstm.setString(1, despesas.getDescricao());
-			pstm.setString(2, despesas.getData().toString());
+			pstm.setDate(2, java.sql.Date.valueOf(despesas.getData())); 
 			pstm.setDouble(3, despesas.getValor());
 			pstm.setString(4, despesas.getCategoria());
-			pstm.execute();
-			pstm.close();
+			
+			System.out.println("Descricao : " + despesas.getDescricao());
+			System.out.println("Data : " + despesas.getData());
+			System.out.println("Valor : " + despesas.getValor());
+			System.out.println("Categoria : " + despesas.getCategoria());
+			
+			//pstm.execute();
+			return true;
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
+			return false;
 		} finally {
 			connection.close();
 		}

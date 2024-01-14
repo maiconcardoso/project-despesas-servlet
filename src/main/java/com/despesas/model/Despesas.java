@@ -21,6 +21,13 @@ public class Despesas extends NotSerializableException{
 		this.valor = valor;
 		this.categoria = categoria;
 	}
+	public Despesas(String descricao, LocalDate data, double valor, String categoria) {
+		this.descricao = descricao;
+		this.data = data;
+		this.valor = valor;
+		this.categoria = categoria;
+	}
+	
 	public int getId() {
 		return id;
 	}
