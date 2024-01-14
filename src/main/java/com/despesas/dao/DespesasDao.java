@@ -10,11 +10,7 @@ import java.util.ArrayList;
 
 import com.despesas.model.Despesas;
 
-
-
-
 public class DespesasDao implements IDao<Despesas, Integer>{
-
 	private Connection connection = null;
 
 	@Override
@@ -62,7 +58,6 @@ public class DespesasDao implements IDao<Despesas, Integer>{
 		} finally {
 			connection.close();
 		}
-		
 	}
 	
 	@Override
@@ -121,5 +116,4 @@ public class DespesasDao implements IDao<Despesas, Integer>{
 			connection.close();
 		}
 	}
-
 }
