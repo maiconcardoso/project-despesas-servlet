@@ -38,5 +38,5 @@ public class AdicionaDespesasServlet extends HttpServlet {
 			} catch (ClassNotFoundException e) 
 				{ e.printStackTrace(); 
 			}
-		response.sendRedirect("index.html");
+		response.sendRedirect("lista-despesas-scriptlet.jsp");
 	}}
