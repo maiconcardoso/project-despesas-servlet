@@ -85,12 +85,28 @@ public class DespesasDao implements IDao<Despesas, Integer>{
 		} catch(SQLException e) {
 			System.err.println(e.getMessage());
 			return false;
+		} finally {
+			connection.close();
 		}
 	}
 
 	@Override
-	public boolean delete(Despesas obj) throws SQLException, ClassNotFoundException {
-		return false;
+	public boolean delete(Despesas despesas) throws SQLException, ClassNotFoundException {
+		
+		String deleteSQL = "DELETE FROM tb_despesas where id=?";
+		
+		try {
+			connection = new ConnectionFactory().connect();
+			PreparedStatement pstm = connection.prepareStatement(deleteSQL);
+			pstm.setInt(1, despesas.getId());
+			pstm.execute();
+			return true;
+		} catch(SQLException e) {
+			System.err.println(e.getMessage());
+			return false;
+		} finally {
+			connection.close();
+		}	
 	}
 
 	@Override
