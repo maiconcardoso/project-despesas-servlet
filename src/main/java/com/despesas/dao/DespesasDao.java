@@ -70,8 +70,22 @@ public class DespesasDao implements IDao<Despesas, Integer>{
 	}
 	
 	@Override
-	public boolean update(Despesas obj) throws SQLException, ClassNotFoundException {
-		return false;
+	public boolean update(Despesas despesas) throws SQLException, ClassNotFoundException {
+		String updateSQL = "UPDATE tb_despesas set descricao=?, data_=?, valor=?, categoria=? where id=?";
+		try {
+			connection = new ConnectionFactory().connect();
+			PreparedStatement pstm = connection.prepareStatement(updateSQL);
+			pstm.setString(1, despesas.getDescricao());
+			pstm.setDate(2, java.sql.Date.valueOf(despesas.getData()));
+			pstm.setDouble(3, despesas.getValor());
+			pstm.setString(4, despesas.getCategoria());
+			pstm.setInt(5, despesas.getId());
+			pstm.executeQuery();
+			return true;
+		} catch(SQLException e) {
+			System.err.println(e.getMessage());
+			return false;
+		}
 	}
 
 	@Override
