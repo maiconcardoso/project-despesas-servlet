@@ -19,9 +19,7 @@ public class DespesasDao implements IDao<Despesas, Integer>{
 
 	@Override
 	public boolean create(Despesas despesas) throws ClassNotFoundException, SQLException {
-		
 		String createSQL = "INSERT INTO tb_despesas (descricao, data_, valor, categoria) " + "values (?, ?, ?, ?)";
-		
 		try {
 			connection = new ConnectionFactory().connect();
 			PreparedStatement pstm = connection.prepareStatement(createSQL);
@@ -41,10 +39,8 @@ public class DespesasDao implements IDao<Despesas, Integer>{
 	}
 
 	public List<Despesas> readAll() throws SQLException, ClassNotFoundException {
-		
 		String readSQL = "SELECT * FROM tb_despesas";
 		List<Despesas> listaDespesas = new ArrayList<>();
-		
 		try {
 			connection = new ConnectionFactory().connect();
 			PreparedStatement pstm = connection.prepareStatement(readSQL);
@@ -92,9 +88,7 @@ public class DespesasDao implements IDao<Despesas, Integer>{
 
 	@Override
 	public boolean delete(Despesas despesas) throws SQLException, ClassNotFoundException {
-		
 		String deleteSQL = "DELETE FROM tb_despesas where id=?";
-		
 		try {
 			connection = new ConnectionFactory().connect();
 			PreparedStatement pstm = connection.prepareStatement(deleteSQL);
@@ -111,8 +105,21 @@ public class DespesasDao implements IDao<Despesas, Integer>{
 
 	@Override
 	public Despesas findById(Integer id) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		String findByIdSQL = "SELECT * FROM tb_despesas where id=?";
+		try {
+			connection = new ConnectionFactory().connect();
+			PreparedStatement pstm = connection.prepareStatement(findByIdSQL);
+			Despesas despesas = new Despesas();
+			despesas.setId(id);
+			pstm.setInt(1, despesas.getId());
+			pstm.execute();
+			return despesas;
+		} catch(SQLException e) {
+			System.err.println(e.getMessage());
+			return null;
+		} finally {
+			connection.close();
+		}
 	}
 
 }
