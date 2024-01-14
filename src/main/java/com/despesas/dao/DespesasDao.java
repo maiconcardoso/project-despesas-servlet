@@ -13,6 +13,7 @@ public class DespesasDao {
 	private Connection connection = null;
 
 	public boolean create(Despesas despesas) throws ClassNotFoundException, SQLException {
+		
 		String createSQL = "INSERT INTO tb_despesas (descricao, data_, valor, categoria) " + "values (?, ?, ?, ?)";
 		
 		try {
@@ -22,14 +23,9 @@ public class DespesasDao {
 			pstm.setDate(2, java.sql.Date.valueOf(despesas.getData())); 
 			pstm.setDouble(3, despesas.getValor());
 			pstm.setString(4, despesas.getCategoria());
-			
-			System.out.println("Descricao : " + despesas.getDescricao());
-			System.out.println("Data : " + despesas.getData());
-			System.out.println("Valor : " + despesas.getValor());
-			System.out.println("Categoria : " + despesas.getCategoria());
-			
-			//pstm.execute();
+			pstm.execute();
 			return true;
+			
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 			return false;
