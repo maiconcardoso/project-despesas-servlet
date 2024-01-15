@@ -1,5 +1,7 @@
 package com.despesas.servlets;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +20,7 @@ public class AdicionaDespesasServlet extends HttpServlet {
 	
 
 	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String descricaoStr = request.getParameter("descricao");
 		String dataStr = request.getParameter("data");
 		String valorStr = request.getParameter("valor");
@@ -38,5 +40,6 @@ public class AdicionaDespesasServlet extends HttpServlet {
 			} catch (ClassNotFoundException e) 
 				{ e.printStackTrace(); 
 			}
-		response.sendRedirect("lista-despesas-scriptlet.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/despesa-adicionado.jsp");
+		dispatcher.forward(request, response);
 	}}
