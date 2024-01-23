@@ -1,6 +1,8 @@
 package com.despesas.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,9 +25,13 @@ public class ControladoraServlet extends HttpServlet {
 		   String actionName = request.getParameter("action");
 		   System.out.println("Ação executada : " + actionName);
 		   String pacote = "com.despesas.actions.";
+		   
 		   Class classe = Class.forName(pacote + actionName);
 		   Action action = (Action) classe.newInstance();
-		   action.executa(request, response);
+		   String result = action.executa(request, response);
+		   
+		   RequestDispatcher dispatcher = request.getRequestDispatcher(result);
+		   dispatcher.forward(request, response);
 		   
 	} catch (ClassNotFoundException e) {
 		e.printStackTrace();
@@ -34,7 +40,6 @@ public class ControladoraServlet extends HttpServlet {
 	} catch (IllegalAccessException e) {
 		e.printStackTrace();
 	}
-	   
    }
 
 }

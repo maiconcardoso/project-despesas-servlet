@@ -14,17 +14,18 @@ import com.despesas.model.Despesas;
 
 public class ListaDespesas implements Action{
 
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DespesasDao despesasDao = new DespesasDao();
 		try {
 			List<Despesas> listaDespesas = despesasDao.readAll();
 			request.setAttribute("listaDespesas", listaDespesas);
 			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/lista-despesas-scriptlet.jsp");
-			dispatcher.forward(request, response);
+			
+			return "/lista-despesas-scriptlet.jsp";
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			System.err.println(e.getMessage());
+			return null;
 		}
 	}
 }

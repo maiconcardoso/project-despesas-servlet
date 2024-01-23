@@ -15,7 +15,7 @@ import com.despesas.model.Despesas;
 
 public class AdicionaDespesa implements Action{
 	
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String descricaoStr = request.getParameter("descricao");
 		String dataStr = request.getParameter("data");
 		String valorStr = request.getParameter("valor");
@@ -35,8 +35,8 @@ public class AdicionaDespesa implements Action{
 			} catch (ClassNotFoundException e) 
 				{ e.printStackTrace(); 
 			}
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/despesa-adicionado.jsp");
-		dispatcher.forward(request, response);
+		
+		return "/despesa-adicionado.jsp";
 	}
 
 }
