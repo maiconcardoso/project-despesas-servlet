@@ -7,10 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import actions.Action;
-import actions.AdicionaDespesa;
-import actions.ListaDespesas;
-import actions.RemoveDespesas;
+import com.despesas.actions.Action;
+
+
 
 @WebServlet("/controladora")
 public class ControladoraServlet extends HttpServlet {
